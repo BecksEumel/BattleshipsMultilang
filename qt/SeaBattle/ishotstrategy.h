@@ -12,8 +12,8 @@ protected:
     std::list<ShotTarget> _strategy;
 public:
     virtual ~IShotStrategy(){}
-    virtual void init(std::list<ShotTarget> remainingShots);
-    virtual ShotTarget getNextShot ();
+    virtual void init(std::list<ShotTarget> remainingShots) const = 0;
+    virtual ShotTarget getNextShot () const = 0;
 };
 
 #endif // ISHOTSTRATEGY_H

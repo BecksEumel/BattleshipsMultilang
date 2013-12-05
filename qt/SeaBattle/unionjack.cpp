@@ -1,6 +1,7 @@
+#include <algorithm>
 #include "unionjack.h"
 
-UnionJack::UnionJack()
+UnionJack::UnionJack() : IShotStrategy()
 {
     _lastShot = UNDEFINED;
     _remainingShots.clear();
@@ -63,16 +64,27 @@ UnionJack::UnionJack()
 
 UnionJack::~UnionJack()
 {
-    //
-
+    _strategy.clear();
+    _remainingShots.clear();
 }
 
 void UnionJack::init(std::list<ShotTarget> remainingShots)
 {
-    //
+    _remainingShots.clear();
+    _remainingShots.merge(remainingShots);
 }
 
 ShotTarget UnionJack::getNextShot()
 {
-    //
+    std::list<ShotTarget>::iterator it = _strategy.begin();
+
+    while (it != _strategy.end())
+    {
+        if (std::find(_remainingShots.begin(), _remainingShots.end(), *it) != _remainingShots.end())
+        {
+            return *it;
+        }
+        ++it;
+    }
+    return UNDEFINED;
 }

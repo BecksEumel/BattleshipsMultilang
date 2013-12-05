@@ -4,7 +4,7 @@
 #include <list>
 #include "ishotstrategy.h"
 
-class UnionJack : virtual public IShotStrategy
+class UnionJack : public IShotStrategy
 {
 public:
     UnionJack();
